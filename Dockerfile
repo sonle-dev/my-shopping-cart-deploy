@@ -23,7 +23,7 @@ ENV JAVA_OPTS=""
 
 COPY --from=build /app/build/libs/*.jar /app/app.jar
 
-EXPOSE 8080
+EXPOSE 8081
 
 # Use sh -c so JAVA_OPTS is expanded
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
