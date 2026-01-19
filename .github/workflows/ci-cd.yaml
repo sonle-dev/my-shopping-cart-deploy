@@ -33,7 +33,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo ">>> Stopping and removing old container if exists"
             docker rm -f re-shopping-cart-web-app || true
@@ -53,7 +53,7 @@ jobs:
               -e DB_PASSWORD='${{ secrets.DB_PASSWORD }}' \
               -e JAVA_OPTS="-Xms512m -Xmx512m -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0" \
               -e TZ=UTC \
-              ${{ secrets.DOCKER_DOCKER_USERNAME }}/re-shopping-cart-web-app:latest
+              ${{ secrets.DOCKER_USERNAME }}/re-shopping-cart-web-app:latest
 
             echo ">>> Status & logs"
             docker ps -a --filter "name=re-shopping-cart-web-app"
